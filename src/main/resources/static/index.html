@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airline Booking</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+<main class="shell">
+  <nav class="topbar">
+    <a href="#search">Flights</a>
+    <a href="#admin">Admin</a>
+    <a href="#manager">Manager</a>
+  </nav>
+
+  <section class="panel" id="search">
+    <h1>Airline Booking</h1>
+    <form class="search-form" id="searchForm">
+      <label>
+        Origin
+        <input name="origin" value="Mumbai">
+      </label>
+      <label>
+        Destination
+        <input name="destination" value="Delhi">
+      </label>
+      <label>
+        Date
+        <input name="date" type="date">
+      </label>
+      <button type="submit">Search</button>
+    </form>
+    <p class="notice" id="status" hidden></p>
+
+    <h2>Available Flights</h2>
+    <div class="flight-grid" id="flightResults"></div>
+  </section>
+
+  <section class="panel narrow" id="admin">
+    <h2>Admin Flight Update</h2>
+    <form method="post" action="/admin/flights" class="grid-form">
+      <label>
+        Flight ID
+        <input name="flightId" value="AI-404" required>
+      </label>
+      <label>
+        Origin
+        <input name="origin" value="Pune" required>
+      </label>
+      <label>
+        Destination
+        <input name="destination" value="Goa" required>
+      </label>
+      <label>
+        Seat Class
+        <select name="seatClass" required>
+          <option>First</option>
+          <option>Business</option>
+          <option selected>Economy</option>
+        </select>
+      </label>
+      <label>
+        Price
+        <input name="price" type="number" min="1" step="0.01" value="4500" required>
+      </label>
+      <label>
+        Total Seats
+        <input name="totalSeats" type="number" min="1" value="60" required>
+      </label>
+      <button type="submit">Submit for Approval</button>
+    </form>
+  </section>
+
+  <section class="panel" id="manager">
+    <h2>Manager Approvals</h2>
+    <div id="pendingApprovals"></div>
+  </section>
+</main>
+</body>
+</html>

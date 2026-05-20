@@ -1,0 +1,25 @@
+# Build output
+target/
+out/
+build/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/workspace files
+.idea/
+.vscode/
+*.iml
+
+# Java runtime artifacts
+hs_err_pid*
+replay_pid*
+
+# Environment files
+.env
+.env.*
+!.env.example
