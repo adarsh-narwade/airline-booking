@@ -43,6 +43,11 @@ a {
   background: #eef3fb;
 }
 
+.topbar a.active {
+  background: #1f6feb;
+  color: #ffffff;
+}
+
 .panel {
   margin-bottom: 24px;
   padding: 24px;
@@ -73,6 +78,14 @@ h2 {
 
 p {
   margin: 0 0 16px;
+}
+
+.subtle {
+  color: #52627f;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 label {

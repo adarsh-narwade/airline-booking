@@ -10,12 +10,13 @@
 <body>
 <main class="shell">
   <nav class="topbar">
-    <a href="#search">Flights</a>
-    <a href="#admin">Admin</a>
-    <a href="#manager">Manager</a>
+    <a href="#search" data-view-link="search">Flights</a>
+    <a href="#bookings" data-view-link="bookings">Bookings</a>
+    <a href="#admin" data-view-link="admin">Admin</a>
+    <a href="#manager" data-view-link="manager">Manager</a>
   </nav>
 
-  <section class="panel" id="search">
+  <section class="panel view-panel" id="search" data-view="search">
     <h1>Airline Booking</h1>
     <form class="search-form" id="searchForm">
       <label>
@@ -38,9 +39,16 @@
     <div class="flight-grid" id="flightResults"></div>
   </section>
 
-  <section class="panel narrow" id="admin">
+  <section class="panel view-panel" id="bookings" data-view="bookings">
+    <h2>Confirmed Bookings</h2>
+    <p class="subtle">Bookings are confirmed immediately and reduce available seats. They do not go to manager approval.</p>
+    <div id="bookingResults"></div>
+  </section>
+
+  <section class="panel narrow view-panel" id="admin" data-view="admin">
     <h2>Admin Flight Update</h2>
-    <form method="post" action="/admin/flights" class="grid-form">
+    <p class="subtle">Admin updates are submitted to the manager approval queue before customers can see them.</p>
+    <form method="post" action="/admin/flights" class="grid-form" id="adminForm">
       <label>
         Flight ID
         <input name="flightId" value="AI-404" required>
@@ -73,8 +81,9 @@
     </form>
   </section>
 
-  <section class="panel" id="manager">
+  <section class="panel view-panel" id="manager" data-view="manager">
     <h2>Manager Approvals</h2>
+    <p class="subtle">Approved updates move from the pending queue into the searchable flights list.</p>
     <div id="pendingApprovals"></div>
   </section>
 </main>
