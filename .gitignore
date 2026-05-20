@@ -2,6 +2,7 @@
 target/
 out/
 build/
+data/
 
 # Logs
 *.log

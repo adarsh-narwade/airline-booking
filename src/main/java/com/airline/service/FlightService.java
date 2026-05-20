@@ -1,6 +1,6 @@
 package com.airline.service;
 
-import com.airline.dao.InMemoryFlightDao;
+import com.airline.dao.JdbcFlightDao;
 import com.airline.dto.ApprovalRequest;
 import com.airline.dto.BookingRequest;
 import com.airline.dto.BookingResponse;
@@ -14,9 +14,9 @@ import java.util.UUID;
 
 @Service
 public class FlightService {
-    private final InMemoryFlightDao flightDao;
+    private final JdbcFlightDao flightDao;
 
-    public FlightService(InMemoryFlightDao flightDao) {
+    public FlightService(JdbcFlightDao flightDao) {
         this.flightDao = flightDao;
     }
 
@@ -61,7 +61,7 @@ public class FlightService {
             return new BookingResponse(false, "Flight class is not available.");
         }
 
-        if (!flight.reserveSeats(seatCount)) {
+        if (!flightDao.reserveSeats(flight.getFlightId(), flight.getSeatClass(), seatCount)) {
             return new BookingResponse(false, "Not enough seats are available.");
         }
 
@@ -76,8 +76,9 @@ public class FlightService {
         );
         flightDao.saveBooking(booking);
 
+        Flight updatedFlight = flightDao.find(flight.getFlightId(), flight.getSeatClass());
         String message = "Booking confirmed. Reference: " + bookingId
-                + ". Seats remaining: " + flight.getAvailableSeats();
+                + ". Seats remaining: " + updatedFlight.getAvailableSeats();
         return new BookingResponse(true, bookingId, message);
     }
 

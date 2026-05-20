@@ -3,11 +3,12 @@
 This is a small Java Spring Boot project for a simplified airline booking flow. It includes:
 
 - Spring Boot MVC controllers for searching, booking, admin updates, and manager approvals
-- A service layer around an in-memory flight repository
+- A service layer around a Spring JDBC repository
+- Local H2 database schema and seed data
 - A static frontend served from `src/main/resources/static`
 - No servlet XML, JSP, JSTL, WAR packaging, or external container requirement
 
-Data is intentionally in memory so the app can run without a database.
+Data is stored in a local H2 database file under `data/`.
 
 ## Requirements
 
@@ -46,7 +47,19 @@ java -jar target/airline-booking-1.0.0.jar
 - `GET /admin/pending` lists pending approvals
 - `POST /manager/approve` approves a pending flight
 
+## Database
+
+The app uses H2 through Spring JDBC. Schema and seed data live in:
+
+- `src/main/resources/schema.sql`
+- `src/main/resources/data.sql`
+
+The H2 console is available at `http://localhost:8081/h2-console` while the app is running.
+
+Connection details are in `src/main/resources/application.properties`.
+
+See `docs/database.md` for the SQL queries used by the application.
+
 ## Notes
 
-- The current DAO is in-memory only; use JDBC or JPA for persistent data.
 - Booking confirmation is simulated and does not send email.

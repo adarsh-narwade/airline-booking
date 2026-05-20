@@ -53,6 +53,10 @@ public class Flight {
         return approved;
     }
 
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
